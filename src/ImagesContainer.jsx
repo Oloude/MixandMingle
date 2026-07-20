@@ -7,7 +7,7 @@ const numbers = Array.from({ length: 21 }, (_, index) => index + 1);
 function ImagesContainer() {
   const navigate = useNavigate();
   return (
-    <section className="px-5 sm:px-25 py-10 flex flex-col gap-10 ">
+    <section className="px-5 sm:px-25 py-10 flex flex-col gap-10 scroll-smooth ">
       <div className="flex items-center justify-between">
         <div className="flex flex-col gap-1.5">
           <h2 className="font-raleway text-base font-bold text-black100 uppercase tracking-[1.46px]">
@@ -26,7 +26,7 @@ function ImagesContainer() {
           </button>
         </div>
       </div>
-      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
+      <div id='gallery' className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
         {numbers.map((i) => (
           <Link key={i} to={`img/${i}`} className="bg-black/10 h-50">
             <img
