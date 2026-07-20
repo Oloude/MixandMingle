@@ -5,11 +5,11 @@
   --font-raleway: "Raleway", sans-serif;
   --font-lato: "Lato", sans-serif;
   --color-red: #fe0303;
-  --color-black100 : #1E1E1E;
+  --color-black100: #1e1e1e;
 }
 
-.bg-hero{
-  background-image: url('/hero.jpg');
+.bg-hero {
+  background-image: url("/hero.png");
   background-position: center;
   background-size: cover;
   background-repeat: no-repeat;
