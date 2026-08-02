@@ -1,6 +1,7 @@
+import { FaArrowLeftLong } from "react-icons/fa6";
 import { PiShareFatLight } from "react-icons/pi";
 import { TfiDownload } from "react-icons/tfi";
-import { useParams } from "react-router";
+import { Link, useParams } from "react-router";
 import { toast } from "react-toastify";
 
 function ImageDetail() {
@@ -86,20 +87,25 @@ function ImageDetail() {
 
   return (
     <div className="flex flex-col gap-4 px-5 sm:px-25 pb-20">
-      <div className="flex items-center justify-end gap-4">
-        <button
-          onClick={handleDownload}
-          className="w-11.25 h-8 cursor-pointer hover:bg-black100/5 flex items-center justify-center transition-all"
-        >
-          <TfiDownload className="text-black100 w-5 h-5" />
-        </button>
+      <div className="flex items-center justify-between gap-3">
+        <Link to="/" className="text-black100 hover:text-black transition-all">
+          <FaArrowLeftLong className="w-5 h-5" />
+        </Link>
+        <div className="flex items-center justify-end gap-4">
+          <button
+            onClick={handleDownload}
+            className="w-11.25 h-8 cursor-pointer hover:bg-black100/5 flex items-center justify-center transition-all"
+          >
+            <TfiDownload className="text-black100 w-5 h-5" />
+          </button>
 
-        <button
-          onClick={handleShare}
-          className="w-11.25 h-8 cursor-pointer hover:bg-black100/5 flex items-center justify-center transition-all"
-        >
-          <PiShareFatLight className="text-black100 w-5 h-5" />
-        </button>
+          <button
+            onClick={handleShare}
+            className="w-11.25 h-8 cursor-pointer hover:bg-black100/5 flex items-center justify-center transition-all"
+          >
+            <PiShareFatLight className="text-black100 w-5 h-5" />
+          </button>
+        </div>
       </div>
 
       <div className="w-full h-150 bg-black/15">

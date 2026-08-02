@@ -19,11 +19,17 @@ function Header() {
     <header className="w-full h-25 sm:h-30 flex items-center px-5 sm:px-25">
       <div className="max-w-360 flex justify-between gap-2 w-full mx-auto">
         <div className=""></div>
-        <img
-          src="/logo.png"
-          alt=""
-          className="w-40 sm:w-50 h-25 object-cover"
-        />
+        <Link
+          to="/"
+          className="hover:scale-105 transition-transform duration-300"
+        >
+          <img
+            src="/logo.png"
+            alt=""
+            className="w-40 sm:w-50 h-25 object-cover"
+          />
+        </Link>
+
         <nav className="flex items-center gap-5">
           {links.map(({ to, id, icon: Icon }) => (
             <a key={id} href={to} target="_blank" className="cursor-pointer">
