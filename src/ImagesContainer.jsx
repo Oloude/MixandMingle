@@ -119,11 +119,7 @@ function ImagesContainer() {
 
         <div className="flex items-center gap-3">
           <button
-            onClick={() => {
-              alert("cliked");
-              console.log("clicked");
-              handleDownload();
-            }}
+            onClick={handleDownload}
             disabled={loading}
             className="w-11.25 h-8 cursor-pointer hover:bg-black100/5 flex items-center justify-center transition-all disabled:opacity-50 relative z-9999"
             title="Download Gallery"
