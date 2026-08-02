@@ -4,6 +4,7 @@ import { PiShareFatLight } from "react-icons/pi";
 import { TfiDownload } from "react-icons/tfi";
 import JSZip from "jszip";
 import { saveAs } from "file-saver";
+import { toast } from "react-toastify";
 
 const numbers = Array.from({ length: 21 }, (_, index) => index + 1);
 
@@ -51,56 +52,21 @@ function ImagesContainer() {
 
   const handleShare = async () => {
     try {
-      setLoading(true);
-
-      // Fetch all images as File objects
-      const files = await Promise.all(
-        images.map(async (image) => {
-          const response = await fetch(image.url);
-
-          if (!response.ok) {
-            throw new Error(`Failed to fetch ${image.url}`);
-          }
-
-          const blob = await response.blob();
-
-          return new File([blob], image.name, {
-            type: blob.type,
-          });
-        }),
-      );
-
-      // Share files if supported
-      if (
-        navigator.canShare &&
-        navigator.canShare({ files }) &&
-        navigator.share
-      ) {
+      if (navigator.share) {
         await navigator.share({
-          title: "Mix & Mingle Gallery",
-          text: "Check out these amazing photos!",
-          files,
-        });
-      } else if (navigator.share) {
-        // Fallback: Share page URL
-        await navigator.share({
-          title: "Mix & Mingle Gallery",
-          text: "Check out these amazing photos!",
+          title: "Mix & Mingle",
+          text: "Check out this photo!",
           url: window.location.href,
         });
       } else {
-        // Last fallback: Copy URL
         await navigator.clipboard.writeText(window.location.href);
         toast.success("Link copied to clipboard.");
       }
-    } catch (error) {
-      // Ignore AbortError (user cancelled)
-      if (error.name !== "AbortError") {
-        console.error(error);
-        toast.error("Unable to share image.");
+    } catch (err) {
+      if (err.name !== "AbortError") {
+        console.error(err);
+        toast.error("Unable to share.");
       }
-    } finally {
-      setLoading(false);
     }
   };
 

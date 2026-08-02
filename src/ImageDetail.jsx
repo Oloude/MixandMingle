@@ -36,51 +36,22 @@ function ImageDetail() {
       toast.error("Unable to download image.");
     }
   };
-
   const handleShare = async () => {
     try {
-      const response = await fetch(imageUrl);
-
-      if (!response.ok) {
-        throw new Error("Failed to fetch image");
-      }
-
-      const blob = await response.blob();
-
-      const file = new File([blob], imageName, {
-        type: blob.type,
-      });
-
-      // Share the image file if supported
-      if (
-        navigator.share &&
-        navigator.canShare &&
-        navigator.canShare({ files: [file] })
-      ) {
-        await navigator.share({
-          title: `Image ${id}`,
-          text: "Check out this photo!",
-          files: [file],
-        });
-        return;
-      }
-
-      // Fallback: share page URL
       if (navigator.share) {
         await navigator.share({
-          title: `Image ${id}`,
+          title: "Mix & Mingle",
+          text: "Check out this photo!",
           url: window.location.href,
         });
-        return;
+      } else {
+        await navigator.clipboard.writeText(window.location.href);
+        toast.success("Link copied to clipboard.");
       }
-
-      // Last fallback
-      await navigator.clipboard.writeText(window.location.href);
-      toast.success("Link copied to clipboard.");
     } catch (err) {
       if (err.name !== "AbortError") {
         console.error(err);
-        toast.error("Unable to share image.");
+        toast.error("Unable to share.");
       }
     }
   };
